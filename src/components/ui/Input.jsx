@@ -14,15 +14,12 @@ export default function Input({
 }) {
   return (
     <div className="flex flex-col gap-1.5 w-full text-left select-none">
-      {/* Label */}
       <label
         htmlFor={id}
         className="text-sm font-bold text-stone-100 tracking-wide block"
       >
         {label}
       </label>
-
-      {/* Input Element Wrapper */}
       <div className="relative">
         <input
           type={type}
@@ -39,7 +36,6 @@ export default function Input({
           {...props}
         />
         
-        {/* Mockup Red Exclamation Mark Icon on Error */}
         {error && (
           <div className="absolute right-3.5 top-3 text-red-500 pointer-events-none animate-bounce">
             <svg
@@ -58,7 +54,6 @@ export default function Input({
         )}
       </div>
 
-      {/* Assistive / Error Message */}
       {error ? (
         <span className="text-xs text-red-200 font-extrabold tracking-wide flex items-center gap-1.5 animate-slide-in">
           <span className="inline-block w-1.5 h-1.5 bg-red-400 rounded-full" />

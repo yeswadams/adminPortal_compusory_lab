@@ -39,13 +39,10 @@ export default function Shop() {
 
   return (
     <div className="flex-1 flex flex-col md:flex-row min-h-0 select-none">
-      {/* Left Sidebar - Search & Location Filters */}
-      <aside className="w-full md:w-64 bg-[#aa8975] text-[#302018] p-6 md:p-8 flex flex-col gap-6 md:border-r border-stone-400/20">
-        
-        {/* Search Bar Container */}
+      <aside className="w-full md:w-80 bg-[#f5f6f7] text-[#302018] p-6 md:p-8 flex flex-col gap-6 md:border-r border-stone-400/20 shadow-lg">
         <div>
           <h2 className="text-sm font-extrabold uppercase tracking-wider text-[#302018]/65 mb-2.5">
-            Search Portal
+            Search Different types of Coffee
           </h2>
           <div className="relative">
             <input
@@ -53,9 +50,8 @@ export default function Shop() {
               placeholder="Search..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-[#f2f0ef]/80 hover:bg-white focus:bg-white text-stone-900 px-4 py-2.5 pl-10 rounded-full border border-stone-400/30 outline-none focus:ring-2 focus:ring-purple-400 placeholder-stone-500 font-semibold shadow-inner transition-all duration-300"
+              className="w-full bg-[#f2f0ef]/80 hover:bg-white focus:bg-white text-stone-900 px-4 py-2.5 pl-10 rounded-full border border-stone-400/30 outline-none focus:ring-2 focus:ring-black placeholder-stone-500 font-semibold shadow-inner transition-all duration-300"
             />
-            {/* Search Icon */}
             <svg
               className="absolute left-3.5 top-3.5 w-4 h-4 text-stone-500"
               fill="none"
@@ -72,8 +68,6 @@ export default function Shop() {
             </svg>
           </div>
         </div>
-
-        {/* Location / Origin Checkboxes */}
         <div className="flex flex-col">
           <h2 className="text-sm font-extrabold uppercase tracking-wider text-[#302018]/65 mb-3">
             Origins / Locations
@@ -104,11 +98,9 @@ export default function Shop() {
           )}
         </div>
       </aside>
-
-      {/* Main Content Area - Coffee Product Grid */}
-      <main className="flex-1 bg-[#9e7158] p-6 md:p-10 flex flex-col">
+      <main className="flex-1 bg-[#f5f6f7] p-6 md:p-10 flex flex-col">
         {error && (
-          <div className="bg-rose-950/40 border-2 border-rose-500/20 text-rose-100 p-4 rounded-xl mb-6 shadow-sm animate-shake">
+          <div className="bg-rose-950/40 border-2 border-rose-500/20 text-rose-300 p-4 rounded-xl mb-6 shadow-sm animate-shake">
             <div className="flex items-center space-x-2 font-bold text-sm">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
@@ -120,7 +112,7 @@ export default function Shop() {
         )}
 
         {loading && coffees.length === 0 ? (
-          /* Sleek Skeleton Loading Grid */
+          /* Skeleton Loading Grid */
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 animate-pulse">
             {[1, 2, 3, 4].map((n) => (
               <div key={n} className="bg-[#d8d4d2]/60 rounded-2xl p-6 h-64 flex flex-col justify-between">
@@ -137,7 +129,6 @@ export default function Shop() {
             ))}
           </div>
         ) : filteredCoffees.length === 0 ? (
-          /* Empty Search/Filter State */
           <div className="flex-1 flex flex-col justify-center items-center text-center p-12 select-none">
             <svg
               className="w-16 h-16 text-amber-50/45 mb-4 animate-[bounce_2s_infinite]"

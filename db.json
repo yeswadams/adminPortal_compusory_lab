@@ -1,26 +1,21 @@
 {
- "store_info": [
+  "store_info": [
     {
-      "id": 1,
-      "name": "Coffee R Us",
-      "description": "The go to store for coffee",
-      "phone_number": "555-5555"
+      "id": "1",
+      "name": "Daily Coffee House",
+      "description": "We serve the best coffee in town. If you're into coffee, you've found the right place.",
+      "phone_number": "0740 8030 75",
+      "shop_image": "https://www.magnific.com/free-photo/portrait-handsome-young-man-having-tea_7158361.htm#fromView=search&page=1&position=31&uuid=34f5088e-a07c-42b7-94eb-886c4aab3ba2&query=barista+images"
     }
-   ],
+  ],
   "coffee": [
     {
-      "id": 1,
-      "description": "Medium Roast, nutty flavor",
-      "name": "Vanilla bean",
-      "origin": "Columbia",
-      "price": 10.00
-    },
-    {
-      "id": 2,
-      "description": "Dark Roast, Rich flavor",
-      "name": "House Blend",
-      "origin": "Vietnam",
-      "price": 12.00
+      "name": "Water",
+      "description": "What",
+      "origin": "Damn",
+      "price": 20,
+      "id": "ftLi4bSobWk"
     }
-   ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
