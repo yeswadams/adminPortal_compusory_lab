@@ -2,7 +2,7 @@
 
 A React-based application for managing a coffee shop inventory. This project allows users to browse different coffee brands, search and filter by origin, and provides an admin portal for adding and managing coffee products.
 
-## 🚀 Features
+## Features
 
 - **Home Page**: A welcoming landing page with a hero section introducing the website.
 - **Shop**: Browse all available coffee brands.
@@ -16,7 +16,7 @@ A React-based application for managing a coffee shop inventory. This project all
   - **Deletion**: Securely remove coffee brands with a confirmation step.
 - **Persistent Data**: Uses `json-server` to mock a REST API and persist data in `db.json`.
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Frontend**: React 19, Vite, Tailwind CSS
 - **Form Management**: Formik
@@ -25,7 +25,7 @@ A React-based application for managing a coffee shop inventory. This project all
 - **Backend**: JSON Server (Mock API)
 
 
-## ⚙️ Installation & Setup
+## Installation & Setup
 
 1. **Clone the repository**:
    ```bash
@@ -59,7 +59,7 @@ A React-based application for managing a coffee shop inventory. This project all
 - `src/hooks`: Custom hooks like `useCoffee` for data fetching and operations.
 - `db.json`: The database file for `json-server`.
 
-## 📝 Implementation Notes
+## Implementation Notes
 
 - **Formik Integration**: Manual form states were replaced with Formik to improve maintainability and scalability.
 - **Yup Validation**: Centralized validation schemas ensure consistent data entry across the application.
