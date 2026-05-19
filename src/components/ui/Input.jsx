@@ -28,10 +28,10 @@ export default function Input({
           onChange={onChange}
           onBlur={onBlur}
           placeholder={placeholder}
-          className={`w-full bg-white text-stone-900 px-4 py-2.5 rounded-lg border-2 font-medium transition-all duration-200 outline-none focus:ring-2 focus:ring-purple-400 ${
+          className={`w-full bg-white text-stone-900 px-4 py-2.5 rounded-lg border-2 font-medium transition-all duration-200 outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 ${
             error
               ? 'border-red-500 focus:border-red-500 pr-10'
-              : 'border-stone-300 focus:border-purple-400'
+              : 'border-stone-300 focus:border-black'
           }`}
           {...props}
         />

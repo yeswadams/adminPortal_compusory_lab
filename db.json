@@ -10,11 +10,25 @@
   ],
   "coffee": [
     {
-      "name": "Water",
-      "description": "What",
-      "origin": "Damn",
-      "price": 20,
-      "id": "ftLi4bSobWk"
+      "name": "Black Coffee",
+      "description": "This is From the Kenyan Highlands of Mount Kenya.",
+      "origin": "Kenya",
+      "price": 12,
+      "id": "Vb8BnNMLgJI"
+    },
+    {
+      "name": "Yellow Coffee",
+      "description": "This is Coffee from China in Asia",
+      "origin": "China",
+      "price": 13.09,
+      "id": "M_ygVf4D1Bg"
+    },
+    {
+      "name": "White Coffee",
+      "description": "Love your milk with a taste of Coffee, then this is for you.",
+      "origin": "Mt.Elgon",
+      "price": 24.35,
+      "id": "py7h9cVuFGY"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

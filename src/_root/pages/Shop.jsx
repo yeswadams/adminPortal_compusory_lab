@@ -13,7 +13,7 @@ export default function Shop() {
     return [...new Set(origins)].filter(Boolean);
   }, [coffees]);
 
-  // Handle location/origin checkbox selection
+  // Handles the origin checkbox selection
   const handleOriginChange = (origin) => {
     setSelectedOrigins((prev) =>
       prev.includes(origin)
@@ -39,7 +39,7 @@ export default function Shop() {
 
   return (
     <div className="flex-1 flex flex-col md:flex-row min-h-0 select-none">
-      <aside className="w-full md:w-80 bg-[#f5f6f7] text-[#302018] p-6 md:p-8 flex flex-col gap-6 md:border-r border-stone-400/20 shadow-lg">
+      <aside className="w-full md:w-80 bg-[#f5f6f7] text-[#302018] p-4 md:p-8 flex flex-col gap-6 md:border-r border-stone-400/20 shadow-lg">
         <div>
           <h2 className="text-sm font-extrabold uppercase tracking-wider text-[#302018]/65 mb-2.5">
             Search Different types of Coffee
@@ -98,7 +98,7 @@ export default function Shop() {
           )}
         </div>
       </aside>
-      <main className="flex-1 bg-[#f5f6f7] p-6 md:p-10 flex flex-col">
+      <main className="flex-1 bg-[#f5f6f7] p-4 md:p-10 flex flex-col">
         {error && (
           <div className="bg-rose-950/40 border-2 border-rose-500/20 text-rose-300 p-4 rounded-xl mb-6 shadow-sm animate-shake">
             <div className="flex items-center space-x-2 font-bold text-sm">
@@ -131,7 +131,7 @@ export default function Shop() {
         ) : filteredCoffees.length === 0 ? (
           <div className="flex-1 flex flex-col justify-center items-center text-center p-12 select-none">
             <svg
-              className="w-16 h-16 text-amber-50/45 mb-4 animate-[bounce_2s_infinite]"
+              className="w-16 h-16 text-black mb-4 animate-[bounce_2s_infinite]"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -144,12 +144,18 @@ export default function Shop() {
                 d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
               ></path>
             </svg>
-            <h3 className="text-xl font-bold text-amber-50 mb-1">
+            <h3 className="text-xl font-bold text-black mb-1">
               No Coffee Found
             </h3>
-            <p className="text-sm font-semibold text-amber-100/70 max-w-sm">
+            <p className="text-sm font-semibold text-black/70 max-w-sm">
               Try adjusting your search query or location checkboxes to explore other blends!
             </p>
+            <button
+              onClick={() => setSearchTerm("")}
+              className="mt-4 px-4 py-2 bg-stone-900 text-stone-100 rounded-full hover:bg-stone-800 transition-colors font-semibold"
+            >
+              Clear Search
+            </button>
           </div>
         ) : (
           /* Product Grid */

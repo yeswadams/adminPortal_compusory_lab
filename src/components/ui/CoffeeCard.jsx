@@ -1,31 +1,34 @@
 import { useState } from 'react';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
 export default function CoffeeCard({ coffee, onUpdate, onDelete }) {
   const [isEditing, setIsEditing] = useState(false);
-  const [priceInput, setPriceInput] = useState(coffee.price.toString());
-  const [validationError, setValidationError] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
 
-  const handleSave = async (e) => {
-    e.preventDefault();
-    const parsedPrice = parseFloat(priceInput);
-    if (isNaN(parsedPrice) || parsedPrice <= 0) {
-      setValidationError('Must be a positive number');
-      return;
-    }
-    
-    setValidationError('');
-    const result = await onUpdate(coffee.id, { price: parsedPrice });
-    if (result && result.success) {
-      setIsEditing(false);
-    } else {
-      setValidationError(result?.error || 'Failed to update');
-    }
-  };
+  const formik = useFormik({
+    initialValues: {
+      price: coffee.price,
+    },
+    validationSchema: Yup.object({
+      price: Yup.number()
+        .required('Must be a positive number')
+        .positive('Must be a positive number')
+        .typeError('Must be a positive number'),
+    }),
+    enableReinitialize: true,
+    onSubmit: async (values) => {
+      const result = await onUpdate(coffee.id, { price: parseFloat(values.price) });
+      if (result && result.success) {
+        setIsEditing(false);
+      } else {
+        formik.setFieldError('price', result?.error || 'Failed to update');
+      }
+    },
+  });
 
   const handleCancel = () => {
-    setPriceInput(coffee.price.toString());
-    setValidationError('');
+    formik.resetForm();
     setIsEditing(false);
   };
 
@@ -34,7 +37,6 @@ export default function CoffeeCard({ coffee, onUpdate, onDelete }) {
       onDelete(coffee.id);
     } else {
       setIsDeleting(true);
-      // Automatically reset deleting state after 3 seconds if not confirmed
       setTimeout(() => setIsDeleting(false), 3000);
     }
   };
@@ -42,22 +44,17 @@ export default function CoffeeCard({ coffee, onUpdate, onDelete }) {
   return (
     <div className="bg-[#d8d4d2] text-[#302018] rounded-2xl p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between border border-stone-300/40 relative overflow-hidden group select-none">
       
-      {/* Dynamic Background Ripple */}
       <div className="absolute inset-0 bg-stone-100/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
-      {/* Main Content */}
       <div className="space-y-4">
-        {/* Name */}
         <h3 className="text-2xl font-bold tracking-tight text-stone-900 border-b border-stone-400/20 pb-2">
           {coffee.name}
         </h3>
 
-        {/* Description */}
         <p className="text-sm text-stone-750 font-medium leading-relaxed italic min-h-[3.5rem]">
           "{coffee.description}"
         </p>
 
-        {/* Details: Origin */}
         <div className="flex items-center space-x-2 text-xs font-semibold uppercase tracking-wider text-stone-600 bg-stone-250/60 py-1 px-3.5 rounded-full w-max">
           <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
@@ -67,19 +64,22 @@ export default function CoffeeCard({ coffee, onUpdate, onDelete }) {
         </div>
       </div>
 
-      {/* Price & Actions Section */}
       <div className="mt-6 pt-4 border-t border-stone-400/25 flex flex-col gap-3">
         {isEditing ? (
-          /* Inline Price Editor Form */
-          <form onSubmit={handleSave} className="flex flex-col gap-2">
+          <form onSubmit={formik.handleSubmit} className="flex flex-col gap-2">
             <div className="flex items-center gap-2">
               <span className="text-lg font-bold">$</span>
               <input
+                id="price"
+                name="price"
                 type="number"
                 step="0.01"
-                value={priceInput}
-                onChange={(e) => setPriceInput(e.target.value)}
-                className="w-full bg-white text-stone-950 px-3 py-1 text-sm rounded-lg border border-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-400 font-semibold"
+                value={formik.values.price}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                className={`w-full bg-white text-stone-950 px-3 py-1 text-sm rounded-lg border focus:outline-none focus:ring-2 focus:black font-semibold ${
+                  formik.touched.price && formik.errors.price ? 'border-red-500' : 'border-purple-300'
+                }`}
                 autoFocus
               />
               <button
@@ -96,14 +96,13 @@ export default function CoffeeCard({ coffee, onUpdate, onDelete }) {
                 X
               </button>
             </div>
-            {validationError && (
+            {formik.touched.price && formik.errors.price && (
               <p className="text-xs text-red-600 font-bold mt-1">
-                {validationError}
+                {formik.errors.price}
               </p>
             )}
           </form>
         ) : (
-          /* Static Price & Edit Mode Toggle */
           <div className="flex justify-between items-center">
             <div>
               <span className="text-xs text-stone-500 uppercase tracking-wider font-semibold block">Price</span>
@@ -124,7 +123,6 @@ export default function CoffeeCard({ coffee, onUpdate, onDelete }) {
           </div>
         )}
 
-        {/* Delete Action Button */}
         {!isEditing && (
           <button
             onClick={handleDeleteClick}

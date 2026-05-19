@@ -1,8 +1,8 @@
 import { Routes, Route } from 'react-router-dom'
-import RootLayout from './root/RootLayout.jsx'
-import HomePage from './root/pages/HomePage.jsx'
-import Shop from './root/pages/Shop.jsx'
-import AdminPortal from './root/pages/AdminPortal.jsx'
+import RootLayout from './_root/RootLayout.jsx'
+import HomePage from './_root/pages/HomePage.jsx'
+import Shop from './_root/pages/Shop.jsx'
+import AdminPortal from './_root/pages/AdminPortal.jsx'
 import './App.css'
 
 function App() {
