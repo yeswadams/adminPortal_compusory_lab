@@ -40,7 +40,8 @@ export default function Navbar() {
           <NavLink to="/shop" className={({ isActive }) => `${baseStyles} ${isActive ? activeStyles : inactiveStyles}`}>
             Shop
           </NavLink>
-          
+
+          {/* Conditional rendering of the adminPortal links on the navbar */}
           {isAuthenticated ? (
             <>
               <NavLink to="/admin" className={({ isActive }) => `${baseStyles} ${isActive ? activeStyles : inactiveStyles}`}>
